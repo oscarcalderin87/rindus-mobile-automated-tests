@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Automated Tests Suite" verbose="1" >
+    <test name="Automated Tests">
+        <classes>
+            <class name="runners.UsersTests_Runner" />
+            <class name="runners.TodosTests_Runner" />
+        </classes>
+    </test>
+</suite>
