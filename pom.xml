@@ -19,7 +19,7 @@
 <properties>
     <report.directory>report</report.directory>
     <tests.suite>tests.xml</tests.suite>
-    <java.version>11.0.5</java.version>
+    <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <selenium.version>3.141.59</selenium.version>
     <cucumber.version>6.11.0</cucumber.version>
