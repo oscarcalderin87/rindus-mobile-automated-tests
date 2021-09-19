@@ -126,11 +126,6 @@
         <artifactId>java-client</artifactId>
         <version>${appium.version}</version>
     </dependency>
-    <dependency>
-        <groupId>net.joeclark.proceduralgeneration</groupId>
-        <artifactId>randomtextgenerators</artifactId>
-        <version>1.0.1</version>
-    </dependency>
 
 </dependencies>
 </project>
