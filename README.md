@@ -21,4 +21,3 @@ A virtual android device created with the following data:
 An HTML file named overview-features.html is generated in report/cucumber-html-reports
 
 **Note:** the created virtual device should be running before starting the execution.
-{: .note}
