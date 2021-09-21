@@ -60,9 +60,4 @@ public class UsersScreen extends BaseScreen {
         UserItem lastUser = getLastUser();
         selectUser(lastUser);
     }
-
-    public void selectSecondUser() {
-        UserItem lastUser = getLastUser();
-        selectUser(lastUser);
-    }
 }
