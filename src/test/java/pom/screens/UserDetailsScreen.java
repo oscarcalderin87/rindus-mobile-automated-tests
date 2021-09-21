@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserDetailsScreen extends BaseScreen {
+    private static final String LAST_TODO_TEXT = "et porro tempora";
+
     private static final By userDetailsScreenTextBy = By.xpath("//*[@text='User details']");
     private static final By nameBy = By.id("tv_userDetail_name");
     private static final By usernameBy = By.id("tv_userDetail_username");
@@ -31,9 +33,6 @@ public class UserDetailsScreen extends BaseScreen {
                     ".scrollIntoView(new UiSelector().resourceIdMatches(\".*rv_userDetail_todos.*\"))");
     private static final By todoLayoutBy = By.xpath("//android.widget.CheckBox[contains(@resource-id,'cb_todo_checked')]/parent::*/parent::*");
 
-    private static final By testby = MobileBy.AndroidUIAutomator(
-            "new UiScrollable(new UiSelector().scrollable(true))" +
-                    ".scrollIntoView(new UiSelector().resourceIdMatches(\".*cb_todo_checked.*\"))");
 
 
 
@@ -110,16 +109,13 @@ public class UserDetailsScreen extends BaseScreen {
     }
 
     public List<TodoItem> getTodosOnScreen() {
-//        MobileElement todoList = driver.findElement(todosListBy);
-//        MobileElement todoList = driver.findElement(By.id("rv_userDetail_todos"));
-//        return todoList.findElements(todoLayoutBy).stream().map(
         return driver.findElements(todoLayoutBy).stream().map(
                 element -> new TodoItem(driver, testContext, element
                 )).collect(Collectors.toList());
     }
 
     public TodoItem getLastTodo() {
-        scrollListToLeft(todosListBy, "et porro tempora");
+        scrollListToLeft(todosListBy, LAST_TODO_TEXT);
         List<TodoItem> todos = getTodosOnScreen();
         return todos.get(todos.size() - 1);
     }

@@ -4,14 +4,15 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidSelectorException;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.NoSuchElementException;
+
+import static io.appium.java_client.touch.WaitOptions.waitOptions;
+import static io.appium.java_client.touch.offset.PointOption.point;
+import static java.time.Duration.ofMillis;
 
 public class Utils {
     private static final int TIMEOUT = 15;
@@ -39,9 +40,9 @@ public class Utils {
 
     public static void swipeElementToLeft(AppiumDriver<MobileElement> driver, MobileElement element) {
         new TouchAction(driver)
-                .press(PointOption.point(element.getCenter()))
-                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(300)))
-                .moveTo(PointOption.point(0,100))
+                .press(point(element.getCenter()))
+                .waitAction(waitOptions(ofMillis(300)))
+                .moveTo(point(0,100))
                 .release()
                 .perform();
     }
@@ -50,16 +51,10 @@ public class Utils {
     public static void scrollListToLeft(AppiumDriver<MobileElement> driver, By listSelector, String expectedText) {
         try {
             driver.findElement(listSelector);
-            if (driver.findElements(By.xpath("//*[text()='" + expectedText + "']")).size() > 0) {
-                driver.findElement(MobileBy.AndroidUIAutomator(
-                        "new UiScrollable(new UiSelector().scrollable(true)).setAsHorizontalList().scrollForward(10)"));
-                return;
-            }
-            else {
+            while (driver.findElements(MobileBy.AndroidUIAutomator("text(\""+ expectedText + "\")")).size() == 0) {
                 driver.findElement(MobileBy.AndroidUIAutomator(
                         "new UiScrollable(new UiSelector().scrollable(true)).setAsHorizontalList().scrollForward(10)"));
             }
-
         } catch (InvalidSelectorException e) {
             // ignore
         }
