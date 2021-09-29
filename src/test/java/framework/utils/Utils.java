@@ -38,7 +38,7 @@ public class Utils {
     }
 
 
-    public static void swipeElementToLeft(AppiumDriver<MobileElement> driver, MobileElement element) {
+    public static void swipeElementToLeft(final AppiumDriver<MobileElement> driver, final MobileElement element) {
         new TouchAction(driver)
                 .press(point(element.getCenter()))
                 .waitAction(waitOptions(ofMillis(300)))
@@ -48,7 +48,7 @@ public class Utils {
     }
 
 
-    public static void scrollListToLeft(AppiumDriver<MobileElement> driver, By listSelector, String expectedText) {
+    public static void scrollListToLeft(final AppiumDriver<MobileElement> driver, final By listSelector, final String expectedText) {
         try {
             driver.findElement(listSelector);
             while (driver.findElements(MobileBy.AndroidUIAutomator("text(\""+ expectedText + "\")")).size() == 0) {
